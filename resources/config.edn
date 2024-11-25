@@ -1,0 +1,11 @@
+{:webserver/port #long #or [#env PORT 3001]
+
+ :database {:dbtype "postgres"
+            :dbname #or [#env DB-NAME "school_module"]
+            :username #or [#env DB-USER "root"]
+            :password #or [#env DB-PASS "root"]
+            :host #or [#env DB-HOST "localhost"]
+            :port #or [#env DB-PORT 5432]}
+
+ :jwt {:secret #or [#env JWT_SECRET "app-jwt-secret"]}}
+
