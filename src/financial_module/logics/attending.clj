@@ -1,5 +1,5 @@
 (ns financial-module.logics.attending
-  (:require [financial-module.adapters :as adapters]
+  (:require [financial-module.adapters.attending :as adapters.attending]
             [financial-module.schemas.db.attending :as db.attending]
             [schema.core :as s])
   (:import [java.util UUID]))
@@ -14,12 +14,12 @@
   [date :- s/Inst
    amount :- s/Num]
   (-> date
-      (adapters/inst->utc-formated-string "yyyy-MM-dd hh:mm:ss")
+      (adapters.attending/inst->utc-formated-string "yyyy-MM-dd hh:mm:ss")
       (str amount)
       uuid-from-string))
 
 (s/defn ->attending-transaction :- db.attending/AttendingTransaction
-  [date :- s/Int
+  [date :- s/Inst
    students-id :- s/Uuid
    subjects-id :- s/Uuid]
   #:attending{:id (uuid-from-date-amount date 0)

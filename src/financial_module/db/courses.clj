@@ -16,7 +16,7 @@
        (components.database/execute db)
        first))
 
-(s/defn update-courses-entry-transaction
+(s/defn update-courses-transaction
   [{:courses/keys [id name description]} :- db.courses/CoursesTransaction
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :courses)
@@ -27,7 +27,7 @@
        (components.database/execute db)
        first))
 
-(s/defn remove-courses-entry
+(s/defn remove-courses
   [id :- s/Uuid
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :courses)

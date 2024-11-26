@@ -21,20 +21,18 @@
       (.format (DateTimeFormatter/ofPattern str-format))))
 
 (s/defn db->wire-in :- wire.in.subjects/SubjectsEntry
-  [{:attending/keys [id name description courses_id created_at]} :- db.subjects/SubjectsEntry]
+  [{:subjects/keys [id name description courses_id created_at]} :- db.subjects/SubjectsEntry]
   {:id id
    :name name
    :description description
    :courses-id courses_id
    :created-at created_at})
 
-(s/defn ->courses-history :- wire.in.subjects/SubjectsHistory
-  [attending-entries :- [db.subjects/SubjectsEntry]]
-  (let [total (reduce #(+ (:attending/amount %2) %1) 0M attending-entries)]
-    {:entries (mapv db->wire-in attending-entries)
-     :total (bigdec total)}))
+(s/defn ->subjects-history :- wire.in.subjects/SubjectsHistory
+  [subjects-entries :- [db.subjects/SubjectsEntry]]
+  {:entries (mapv db->wire-in subjects-entries)})
 
-(s/defn ->courses :- wire.in.subjects/SubjectsEntry
-  [attending-entries :- [db.subjects/SubjectsEntry]]
-  (let [attending-entry (first attending-entries)]
-    (db->wire-in attending-entry)))
+(s/defn ->subjects :- wire.in.subjects/SubjectsEntry
+  [subjects-entries :- [db.subjects/SubjectsEntry]]
+  (let [subjects-entry (first subjects-entries)]
+    (db->wire-in subjects-entry)))

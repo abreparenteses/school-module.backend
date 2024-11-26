@@ -29,14 +29,7 @@
 
 (s/defn ->attending-history :- wire.in.attending/AttendingHistory
   [attending-entries :- [db.attending/AttendingEntry]]
-  (let [total (reduce #(+ (:attending/amount %2) %1) 0M attending-entries)]
-    {:entries (mapv (fn [{:attending/keys [id students_id subjects_id created_at]}]
-                      {:id id
-                       :students-id students_id
-                       :subjects-id subjects_id
-                       :created-at created_at})
-                    attending-entries)
-     :total (bigdec total)}))
+  {:entries (mapv db->wire-in attending-entries)})
 
 (s/defn ->attending :- wire.in.attending/AttendingEntry
   [attending-entries :- [db.attending/AttendingEntry]]

@@ -16,7 +16,7 @@
        (components.database/execute db)
        first))
 
-(s/defn update-attending-entry-transaction
+(s/defn update-attending-transaction
   [{:attending/keys [id students_id subjects_id]} :- db.attending/AttendingTransaction
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :attending)
@@ -27,7 +27,7 @@
        (components.database/execute db)
        first))
 
-(s/defn remove-attending-entry
+(s/defn remove-attending
   [id :- s/Uuid
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :attending)

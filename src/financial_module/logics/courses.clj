@@ -1,5 +1,5 @@
 (ns financial-module.logics.courses
-  (:require [financial-module.adapters :as adapters]
+  (:require [financial-module.adapters.courses :as adapters.courses]
             [financial-module.schemas.db.courses :as db.courses]
             [schema.core :as s])
   (:import [java.util UUID]))
@@ -14,7 +14,7 @@
   [date :- s/Inst
    amount :- s/Num]
   (-> date
-      (adapters/inst->utc-formated-string "yyyy-MM-dd hh:mm:ss")
+      (adapters.courses/inst->utc-formated-string "yyyy-MM-dd hh:mm:ss")
       (str amount)
       uuid-from-string))
 

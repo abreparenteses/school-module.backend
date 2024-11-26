@@ -16,21 +16,20 @@
        (components.database/execute db)
        first))
 
-(s/defn update-students-entry-transaction
-  [{:students/keys [id name document email phone birthdate]} :- db.students/StudentsTransaction
+(s/defn update-students-transaction
+  [{:students/keys [id name document email phone]} :- db.students/StudentsTransaction
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :students)
            (sql.helpers/set {:name name
                              :document document
                              :email email
-                             :phone phone
-                             :birthdate birthdate})
+                             :phone phone})
            (sql.helpers/where [:= :id id])
            sql/format)
        (components.database/execute db)
        first))
 
-(s/defn remove-students-entry
+(s/defn remove-students
   [id :- s/Uuid
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :students)
@@ -43,7 +42,7 @@
   [db :- schemas.types/DatabaseComponent]
   (components.database/execute
    db
-   (-> (sql.helpers/select :id :name :document :email :phone :birthdate :created_at)
+   (-> (sql.helpers/select :id :name :document :email :phone :created_at)
        (sql.helpers/from :students)
        (sql.helpers/where [:= :removed false])
        (sql.helpers/order-by [:created_at :desc])
@@ -54,7 +53,7 @@
    db :- schemas.types/DatabaseComponent]
   (components.database/execute
    db
-   (-> (sql.helpers/select :id :name :document :email :phone :birthdate :created_at)
+   (-> (sql.helpers/select :id :name :document :email :phone :created_at)
        (sql.helpers/from :students)
        (sql.helpers/where [:= :removed false]
                           [:= :id id])

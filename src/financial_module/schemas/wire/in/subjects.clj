@@ -17,5 +17,4 @@
    :created-at s/Inst})
 
 (s/defschema SubjectsHistory
-  {:entries [SubjectsEntry]
-   :total s/Num})
+  {:entries [SubjectsEntry]})

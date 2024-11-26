@@ -1,45 +1,42 @@
 (ns financial-module.controllers.attending
-  (:require [financial-module.db :as db]
-            [financial-module.logics :as logics]
-            [financial-module.ports.http-out :as http-out]
-            [financial-module.schemas.db :as schemas.db]
+  (:require [financial-module.db.attending :as db.attending]
+            [financial-module.logics.attending :as logics.attending]
+            [financial-module.schemas.db.attending :as schemas.db.attending]
             [financial-module.schemas.types :as schemas.types]
             [schema.core :as s]))
 
 (defn- instant-now [] (java.util.Date/from (java.time.Instant/now)))
 
-(s/defschema AccountsPayableHistory
-  {:entries [schemas.db/AccountsPayableEntry]})
+(s/defschema AttendingHistory
+  {:entries [schemas.db.attending/AttendingEntry]})
 
-(s/defn get-accounts-payable :- AccountsPayableHistory
+(s/defn get-attending :- AttendingHistory
   [{:keys [database]} :- schemas.types/Components]
-  {:entries (db/get-accounts-payable-all-transactions database)})
+  {:entries (db.attending/get-attending-all-transactions database)})
 
-(s/defn get-accounts-payable-by-id :- AccountsPayableHistory
+(s/defn get-attending-by-id :- AttendingHistory
   [id :- s/Uuid
    {:keys [database]} :- schemas.types/Components]
-  {:entries (db/get-accounts-payable-by-id id database)})
+  {:entries (db.attending/get-attending-by-id id database)})
 
-(s/defn add-entry! :- schemas.db/AccountsPayableEntry
-  [name :- s/Str
-   description :- s/Str
-   amount :- schemas.types/PositiveNumber
+(s/defn add-entry! :- schemas.db.attending/AttendingEntry
+  [student-id :- s/Uuid
+   subject-id :- s/Uuid
    {:keys [database]} :- schemas.types/Components]
   (let [now (instant-now)
-        entry (logics/->accounts-payable-transaction now name description amount)]
-    (db/insert-accounts-payable-transaction entry database)))
+        entry (logics.attending/->attending-transaction now student-id subject-id)]
+    (db.attending/insert-attending-transaction entry database)))
 
-(s/defn update-entry! :- schemas.db/AccountsPayableEntry
+(s/defn update-entry! :- schemas.db.attending/AttendingEntry
   [id :- s/Uuid
-   name :- s/Str
-   description :- s/Str
-   amount :- schemas.types/PositiveNumber
+   student-id :- s/Uuid
+   subject-id :- s/Uuid
    {:keys [database]} :- schemas.types/Components]
-  (let [entry (logics/->accounts-payable-update-transaction id name description amount)
-        result (db/update-accounts-payable-entry-transaction entry database)]
+  (let [entry (logics.attending/->attending-update-transaction id student-id subject-id)
+        result (db.attending/update-attending-transaction entry database)]
     (= 1 (:next.jdbc/update-count result))))
 
 (s/defn remove-entry!
   [id :- s/Uuid
    {:keys [database]} :- schemas.types/Components]
-  (db/remove-accounts-payable-entry id database))
+  (db.attending/remove-attending id database))

@@ -8,8 +8,7 @@
   {:name s/Str
    :email s/Str
    :document s/Str
-   :phone s/Str
-   :birthdate s/Str})
+   :phone s/Str})
 
 (s/defschema StudentsEntry
   {:id s/Uuid
@@ -17,9 +16,7 @@
    :email s/Str
    :document s/Str
    :phone s/Str
-   :birthdate s/Str
    :created-at s/Inst})
 
 (s/defschema StudentsHistory
-  {:entries [StudentsEntry]
-   :total s/Num})
+  {:entries [StudentsEntry]})

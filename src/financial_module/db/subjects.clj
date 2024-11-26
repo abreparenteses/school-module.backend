@@ -16,7 +16,7 @@
        (components.database/execute db)
        first))
 
-(s/defn update-subjects-entry-transaction
+(s/defn update-subjects-transaction
   [{:subjects/keys [id name description courses_id]} :- db.subjects/SubjectsTransaction
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :subjects)
@@ -28,7 +28,7 @@
        (components.database/execute db)
        first))
 
-(s/defn remove-subjects-entry
+(s/defn remove-subjects
   [id :- s/Uuid
    db :- schemas.types/DatabaseComponent]
   (->> (-> (sql.helpers/update :subjects)

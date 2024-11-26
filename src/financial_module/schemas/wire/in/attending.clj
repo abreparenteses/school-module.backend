@@ -15,5 +15,4 @@
    :created-at s/Inst})
 
 (s/defschema AttendingHistory
-  {:entries [AttendingEntry]
-   :total s/Num})
+  {:entries [AttendingEntry]})

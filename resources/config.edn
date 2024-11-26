@@ -8,4 +8,3 @@
             :port #or [#env DB-PORT 5432]}
 
  :jwt {:secret #or [#env JWT_SECRET "app-jwt-secret"]}}
-
