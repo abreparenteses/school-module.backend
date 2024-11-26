@@ -12,8 +12,11 @@
   [{{{:keys [id]} :path} :parameters
     components :components}]
   (let [{:keys [entries]} (controllers.attending/get-attending-by-id id components)]
-    {:status 200
-     :body (adapters.attending/->attending entries)}))
+    (if-not (empty? entries)
+      {:status 200
+       :body (adapters.attending/->attending entries)}
+      {:status 400
+       :body "Attending entry not found."})))
 
 (defn add-entry!
   [{{{:keys [students-id subjects-id]} :body} :parameters

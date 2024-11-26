@@ -12,8 +12,11 @@
   [{{{:keys [id]} :path} :parameters
     components :components}]
   (let [{:keys [entries]} (controllers.courses/get-courses-by-id id components)]
-    {:status 200
-     :body (adapters.courses/->courses entries)}))
+    (if-not (empty? entries)
+      {:status 200
+       :body (adapters.courses/->courses entries)}
+      {:status 400
+       :body "Courses entry not found."})))
 
 (defn add-entry!
   [{{{:keys [name description]} :body} :parameters
