@@ -19,7 +19,7 @@
       uuid-from-string))
 
 (s/defn ->courses-transaction :- db.courses/CoursesTransaction
-  [date :- s/Int
+  [date :- s/Inst
    name :- s/Str
    description :- s/Str]
   #:courses{:id (uuid-from-date-amount date 0)

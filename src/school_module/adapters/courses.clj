@@ -29,7 +29,6 @@
 
 (s/defn ->courses-history :- wire.in.courses/CoursesHistory
   [courses-entries :- [db.courses/CoursesEntry]]
-  (println "adapters: " courses-entries)
   {:entries (mapv db->wire-in courses-entries)})
 
 (s/defn ->courses :- wire.in.courses/CoursesEntry

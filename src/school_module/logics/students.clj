@@ -19,7 +19,7 @@
       uuid-from-string))
 
 (s/defn ->students-transaction :- db.students/StudentsTransaction
-  [date :- s/Int
+  [date :- s/Inst
    name :- s/Str
    document :- s/Str
    email :- s/Str
