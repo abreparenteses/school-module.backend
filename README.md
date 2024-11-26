@@ -8,14 +8,30 @@ Clojure microservice implementing: Components, Reitit, Pedestal, Schema, Postgre
 - [parenthesin/components](https://github.com/parenthesin/components): Helpers and component wrappers to give a foundation to create new services in clojure,
 you can find components for database, http, webserver and tools for db migrations.
 
-Verb   | URL                    | Description
------- | ---------------------- | ------------------------------------------------
-POST   | /login                 | login with your username and password  
-GET    | /accounts-payable      | get all accounts payable
-POST   | /accounts-payable      | create a new account payable
-GET    | /accounts-payable/{id} | get an account payable by id
-PUT    | /accounts-payable/{id} | update an account payable by id
-DELETE | /accounts-payable/{id} | delete an account payable by id 
+Verb   | URL                     | Description
+-------|-------------------------|--------------------------------------------------
+GET    | /swagger.json           | Fetch Swagger API documentation
+POST   | /login                  | Login with your username and password
+GET    | /courses                | Get all courses transactions
+POST   | /courses                | Add a new course entry
+GET    | /courses/:id            | Get course transactions by ID
+PUT    | /courses/:id            | Update a course entry by ID
+DELETE | /courses/:id            | Remove a course entry by ID
+GET    | /students               | Get all students transactions
+POST   | /students               | Add a new student entry
+GET    | /students/:id           | Get student transactions by ID
+PUT    | /students/:id           | Update a student entry by ID
+DELETE | /students/:id           | Remove a student entry by ID
+GET    | /subjects               | Get all subjects transactions
+POST   | /subjects               | Add a new subject entry
+GET    | /subjects/:id           | Get subject transactions by ID
+PUT    | /subjects/:id           | Update a subject entry by ID
+DELETE | /subjects/:id           | Remove a subject entry by ID
+GET    | /attending              | Get all attending transactions
+POST   | /attending              | Add a new attending entry
+GET    | /attending/:id          | Get attending transactions by ID
+PUT    | /attending/:id          | Update an attending entry by ID 
+DELETE | /attending/:id          | Remove an attending entry by ID 
 
 ## Repl
 To open a nrepl

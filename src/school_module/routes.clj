@@ -21,7 +21,7 @@
            :handler (swagger/create-swagger-handler)}}]
 
    ["/login"
-    {:swagger {:tags ["auth-module"]}
+    {:swagger {:tags ["auth"]}
 
      :post {:summary "login"
             :parameters {:body wire.in.users/User}
@@ -31,7 +31,7 @@
             :handler http.in.login/login}}]
 
    ["/courses"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["courses"]}
 
      :get {:summary "get all courses transactions"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
@@ -48,7 +48,7 @@
             :handler http.in.courses/add-entry!}}]
 
    ["/courses/:id"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["courses"]}
 
      :get {:summary "get all courses transactions by id"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
@@ -75,7 +75,7 @@
               :handler http.in.courses/remove-entry!}}]
 
    ["/students"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["students"]}
 
      :get {:summary "get all students transactions"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
@@ -92,7 +92,7 @@
             :handler http.in.students/add-entry!}}]
 
    ["/students/:id"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["students"]}
 
      :get {:summary "get all students transactions by id"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
@@ -119,7 +119,7 @@
               :handler http.in.students/remove-entry!}}]
 
    ["/subjects"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["subjects"]}
 
      :get {:summary "get all subjects transactions"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
@@ -136,7 +136,7 @@
             :handler http.in.subjects/add-entry!}}]
 
    ["/subjects/:id"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["subjects"]}
 
      :get {:summary "get all subjects transactions by id"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
@@ -163,7 +163,7 @@
               :handler http.in.subjects/remove-entry!}}]
 
    ["/attending"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["attending"]}
 
      :get {:summary "get all attending transactions"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
@@ -180,7 +180,7 @@
             :handler http.in.attending/add-entry!}}]
 
    ["/attending/:id"
-    {:swagger {:tags ["school-module"]}
+    {:swagger {:tags ["attending"]}
 
      :get {:summary "get all attending transactions by id"
            :interceptors [(interceptors/auth-validate-jwt-interceptor)]
