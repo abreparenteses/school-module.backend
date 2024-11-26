@@ -1,9 +1,9 @@
-# financial-module
+# school-module
 
 Clojure microservice implementing: Components, Reitit, Pedestal, Schema, PostgreSQL and Tests
 
 ## About this project
- - **financial-module**: With ports and adapters architecture, this project is a simple financial module that allows you to register and manipulate accounts payable (and receivable in the future - if possible).
+ - **school-module**: With ports and adapters architecture, this project is a simple school module that allows you to register and manipulate accounts payable (and receivable in the future - if possible).
 
 - [parenthesin/components](https://github.com/parenthesin/components): Helpers and component wrappers to give a foundation to create new services in clojure,
 you can find components for database, http, webserver and tools for db migrations.
@@ -84,7 +84,7 @@ docker-compose -f docker/docker-compose.yml stop
 First you need to have the database running, for this you can use the docker command in the step above.
 
 ### Repl
-You can start a repl open and evaluate the file `src/financial_module/server.clj` and execute following code:
+You can start a repl open and evaluate the file `src/school_module/server.clj` and execute following code:
 ```clojure
 (start-system! (build-system-map))
 ```
@@ -133,12 +133,12 @@ java -jar target/service.jar
 ├── resources -- Application resources assets folder and configuration files.
 │   └── migrations -- Current database schemas, synced on service startup.
 ├── src -- Library source code and headers.
-│   └── financial_module -- Source for the service example.
+│   └── school_module -- Source for the service example.
 └── test -- Test source code.
     ├── integration -- Integration tests source (uses state-flow).
-    │   └── financial_module -- Tests for service example.
+    │   └── school_module -- Tests for service example.
     └── unit -- Unity tests source (uses clojure.test).
-        └── financial_module -- Tests for service example.
+        └── school_module -- Tests for service example.
 ```
 
 ## Related

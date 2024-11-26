@@ -2,8 +2,8 @@
   (:refer-clojure :exclude [test])
   (:require [clojure.tools.build.api :as b]))
 
-(def default-lib 'com.github.parenthesin/financial-module)
-(def default-main 'financial-module.server)
+(def default-lib 'com.github.parenthesin/school-module)
+(def default-main 'school-module.server)
 (def default-version "0.0.1-SNAPSHOT")
 (def class-dir "target/classes")
 

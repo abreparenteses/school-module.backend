@@ -1,7 +1,7 @@
 {:config-paths ["com.github.seancorfield/next.jdbc"
                 "nubank/state-flow"
                 "marick/midje"]
- :hooks {:analyze-call {integration.financial-module.aux/init-flow nubank.state-flow/defflow
+ :hooks {:analyze-call {integration.school-module.aux/init-flow nubank.state-flow/defflow
                         state-flow.api/defflow nubank.state-flow/defflow}}
  :linters {:unsorted-required-namespaces {:level :warning}
            :unresolved-var {:exclude [honeysql.helpers/select
