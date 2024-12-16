@@ -1,6 +1,6 @@
 # school-module
 
-Clojure microservice implementing: Components, Reitit, Pedestal, Schema, PostgreSQL and Tests
+Clojure microservice implementing: Components, Reitit, Pedestal, Schema, PostgreSQL and Tests.
 
 ## About this project
  - **school-module**: With ports and adapters architecture, this project is a simple school module that allows you to register and manipulate accounts payable (and receivable in the future - if possible).
