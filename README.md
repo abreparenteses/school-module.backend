@@ -138,6 +138,50 @@ java -jar target/service.jar
 - [pg-embedded-clj](https://github.com/Bigsy/pg-embedded-clj) Embedded PostgreSQL for integration tests
 - [clojure-lsp](https://github.com/clojure-lsp/clojure-lsp/) Code Format, Namespace Check and Diagnosis
 
+## Entity–relationship diagram
+
+```mermaid
+erDiagram
+    COURSES {
+        uuid id PK "Primary key, unique identifier"
+        boolean removed "Indicates if the course is removed"
+        varchar name "Course name, max 255 chars"
+        text description "Course description"
+        timestamp created_at "Timestamp of course creation"
+    }
+
+    STUDENTS {
+        uuid id PK "Primary key, unique identifier"
+        boolean removed "Indicates if the student is removed"
+        varchar name "Student name, max 255 chars"
+        varchar document "Student document identifier"
+        varchar email "Student email"
+        varchar phone "Student phone number"
+        timestamp created_at "Timestamp of student registration"
+    }
+
+    SUBJECTS {
+        uuid id PK "Primary key, unique identifier"
+        boolean removed "Indicates if the subject is removed"
+        varchar name "Subject name, max 255 chars"
+        text description "Subject description"
+        uuid courses_id FK "References COURSES(id)"
+        timestamp created_at "Timestamp of subject creation"
+    }
+
+    ATTENDING {
+        uuid id PK "Primary key, unique identifier"
+        boolean removed "Indicates if the attendance is removed"
+        uuid students_id FK "References STUDENTS(id)"
+        uuid subjects_id FK "References SUBJECTS(id)"
+        timestamp created_at "Timestamp of attendance creation"
+    }
+
+    COURSES ||--o{ SUBJECTS : "contains"
+    SUBJECTS ||--o{ ATTENDING : "has"
+    STUDENTS ||--o{ ATTENDING : "attends"
+```
+
 ## Directory Structure
 ```
 ./
